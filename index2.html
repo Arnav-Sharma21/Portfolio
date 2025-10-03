@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Limelight&family=Playfair+Display&family=Monoton&family=Special+Elite&family=Fira+Sans+Extra+Condensed:wght@100;400;700;900&family=Bungee+Shade&display=swap" rel="stylesheet">
+
+    <style>
+        html { 
+            scroll-behavior: smooth; 
+        }
+        body{
+            background-color: #0d0d0d; 
+            overflow-x: hidden;     
+            overflow-y: auto;
+            opacity:0;
+            animation: page2 1.8s ease-in forwards;
+        }
+        .header2, header, nav, aside, .section1, div.article.heading, article, footer 
+        {
+        opacity: 0;              
+        transform: translateY(50px); 
+        animation-fill-mode: forwards; 
+        animation-duration: 2s;  
+        animation-timing-function: ease-out;
+        }
+        .container{
+            min-height: 100vh;
+            display:grid;
+            grid-template-columns:1fr 11fr 1fr;
+            gap:10px; 
+        }
+        .left{
+            background: repeating-linear-gradient(black 0px, black 10px, #ffffff 20px, #eeeeee48 70px);
+            animation-name: left;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        .right{
+            background: repeating-linear-gradient(black 0px, black 10px, #ffffff 20px, #eeeeee48 70px);
+            animation-name: right;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        .center{
+            background-color:#7f7f7f7e;
+            display:grid;
+            gap:1em;
+            grid-template-columns: 1fr 1fr 1fr ;
+            grid-template-areas:
+            "header2 header2 header2"
+            "nav nav nav"
+            "header header header"
+            "aside section1 section1"
+            "article0 article0 article0"
+            "article1 article2 article3"
+            "footer footer footer";
+        }
+        .header2 {
+             background:rgb(0, 0, 0);
+             min-height: 80vh;
+             display: flex;
+             align-items: center;
+             color:aliceblue;
+             z-index:0;
+             animation-name: slideInHeader2;
+             animation-delay:1.5s
+        }
+        .header2.text {
+            font-family: "Monoton", sans-serif;
+            font-size: 86px;
+        }
+        .header2.image img{
+            position:relative;
+            gap:40px;
+        }
+        header{
+             background:rgb(0, 0, 0);
+             min-height: 80vh;
+             display: flex;
+             align-items: center;
+             color:aliceblue;
+             gap:40px;
+             position: relative;
+             bottom:50px;
+             border-radius:10%;
+             transition: all 0.4s ease-in-out;
+             animation-name: slideInHeader;
+             animation-delay:4.5s;
+        }
+        .header.text {
+             display: flex;
+             flex-direction: column;
+             align-items: center; 
+             text-align: center;
+             gap:1px;
+             position: relative;
+             bottom:10px;            
+        }
+        .header.image img{
+            position:relative;
+            border-radius:10%;
+            left:0px;
+            top:29px;
+        }
+        .starring{
+             font-family: 'Cinzel Decorative', serif;
+             border-bottom: 2px solid #ccc;
+             display: inline-block;  
+        }
+        .name{
+             font-family: 'Limelight', cursive;   
+        }
+        .climactic{    
+             letter-spacing: 1px;   
+             font-weight: bold;
+        }
+        nav{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            height:20vh;
+            z-index: 1;
+            position:relative;
+            bottom:80px;
+            animation-name: slideInNav;
+            animation-delay: 3s;  
+        }
+        aside{
+            background:rgb(0, 0, 0);
+            border-radius:10%;
+            min-height:40vh;
+            padding: 20px;              
+            box-sizing: border-box;     
+            overflow-wrap: break-word; 
+            display: flex;
+            flex-direction: column;  
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s ease-in-out;
+            animation-name: slideInAside;
+            animation-delay: 6s;
+        }
+        aside > p {
+            order:1;
+            color: #ffffff;
+            margin:0 0 15px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size:1.1em;
+            line-height: 2.2em;
+            letter-spacing: 0.15em;
+            font-family: "Playfair Display", serif;
+        }
+        .aside.image{
+            order:2;
+            position: static;           
+            margin-top:20px;  
+            display: flex;
+            justify-content: center;
+        }
+        .aside.image img {
+            max-width: 100%;            
+            height: auto;
+            border-radius: 10%;
+        }
+        .aside span{
+             font-family: "Limelight", sans-serif;
+             font-size: large;
+             border-bottom: 2px solid #ccc;
+             display: inline-block;
+        }
+        .box:hover {
+            transform: rotate(-3deg) scale(1.05);
+            transition: transform 0.5s ease;
+        }
+        .section1{
+             color:#ffffff;
+             text-align: center;
+             transition: all 0.4s ease-in-out;
+             animation-name: slideInSection;
+             animation-delay: 7.5s;
+        }
+        .section1 h2{
+             border-bottom: 2px solid #ccc;
+             display: inline-block; 
+             font-family: "Limelight", cursive;
+             text-transform: uppercase;
+             letter-spacing: 2px;
+        }
+        .section1 .script{
+             text-align: center;
+        }
+        .section1 .script p{
+             max-width: 600px;
+             margin: 10px auto;   
+             text-align: center;  
+             line-height: 1.8em;
+             font-family: "Special Elite", system-ui;
+        }
+        .scene{
+             border-bottom: 2px solid #ccc;
+             display: inline-block;
+             font-family: "Courier Prime", monospace;
+             font-weight: bold;
+        }
+        div.article.heading{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 600px;
+            height: 200px;
+            background-color: #0d0d0d;
+            margin:0 auto;
+            border-radius:20%;
+            animation-name: slideInArticleHeading;
+            animation-delay: 9s;
+        }
+        div.article.heading p{
+            color: #ffffff;
+            font-family: 'Limelight', cursive;
+            font-size: 28px;
+            font-style: italic; 
+            position: relative;
+        }
+        div.article.heading p::after{
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px; 
+            bottom: -8px; 
+            left: 50%;
+            background-color:#ffffff;
+            transition: width 0.8s ease, left 0.8s ease;
+        }
+         div.article.heading p:hover::after{
+            width: 100%; 
+            left: 0%; 
+        }
+        article{
+            background: rgb(0, 0, 0);
+            border: 4px solid rgb(173, 181, 189);
+            border-radius:10%;
+            min-height:50vh;
+            transition: transform 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .article1 {
+            animation-name: slideInArticle1;
+            animation-delay: 10.5s;
+        }
+        .article2 {
+            animation-name: slideInArticle2;
+            animation-delay: 10.5s;
+        }
+        .article3 {
+            animation-name: slideInArticle3;
+            animation-delay: 10.5s;
+        }
+        .article1 img{
+            width: 300px;
+            height: 250px;
+            border-radius: 10%;
+            margin-top: 20px;
+            z-index:0;
+        }
+        .article1 div > p {
+            background-color: rgb(173, 181, 189);
+            border-radius: 15%;
+            padding-left: 46px;
+            padding-right: 46px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            z-index: 1;
+            position:relative;
+            bottom:50px;
+            font-style: oblique;
+            font-size: large;
+            font-weight: 900;
+        }
+        .article1 div > ul {
+            color:#ffffff;
+            line-height:2em;
+            position:relative;
+            bottom:50px;
+        }
+        .rating1{
+            font-family: "Fira Sans Extra Condensed", sans-serif;
+            font-weight: 300;
+            font-size: large;
+            font-style: italic;
+        }
+        .article2 div > p {
+            background-color: rgb(173, 181, 189);
+            border-radius:15%;
+            padding-left: 97px;
+            padding-right: 97px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            z-index: 1;
+            position:relative;
+            bottom:50px;
+            font-style: oblique;
+            font-size: large;
+            font-weight: 900;
+        }
+        .article2 div > ul {
+            color:#ffffff;
+            line-height:2em;
+            position: relative;
+            bottom:50px;
+        }
+        .article2 img{
+            width: 300px;
+            height: 250px;
+            border-radius: 10%;
+            margin-top: 20px;
+        }
+        .rating2{
+            font-family: "Fira Sans Extra Condensed", sans-serif;
+            font-weight: 300;
+            font-size: large;
+            font-style: italic;
+        }
+        .article3 p {
+            color:#ffffff;
+            font-family: "Bungee Shade", sans-serif;
+            font-size: 40px;
+            line-height: 2em;
+            margin-left: 30px;
+        }
+        section{
+            background: rgb(0, 0, 0);
+            border-radius:10%;
+            min-height:40vh;
+        }
+        footer{
+            background:#0d0d0d;
+            min-height:30vh;
+            animation-name: slideInFooter;
+            animation-delay: 12s;
+        }
+        footer p {
+            background-color:rgba(249, 253, 253, 0.884);
+            color:#0d0d0d;
+            border-radius: 20%;
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 600;
+        }
+        footer  ul {
+            color:#ffffff;
+            line-height: 3em;
+        }
+        footer ul a{
+            color:#ffffff;
+        }
+        footer ul img {
+            position:relative;
+            right:20px;
+            top:7px;
+            border-radius: 20%;
+        }
+        @keyframes slideInHeader 
+        {
+            from { 
+                opacity: 0; transform: translateY(-50px);
+            } 
+            to   { 
+                opacity: 1; transform: translateY(0); 
+            }
+        }
+        @keyframes slideInHeader2 
+        {
+            from { 
+                opacity: 0; transform: translateY(-50px); 
+            } 
+            to   { 
+                opacity: 1; transform: translateY(0); 
+            }
+        }
+        @keyframes slideInNav 
+        {
+            from { 
+                opacity: 0; transform: translateX(-50px); 
+            } 
+            to   { 
+                opacity: 1; transform: translateX(0); 
+            }
+        }
+        @keyframes slideInAside 
+        {
+            from { 
+                opacity: 0; transform: translateX(50px); 
+            } 
+            to   { 
+                opacity: 1; transform: translateX(0); 
+            }
+        }
+        @keyframes slideInArticleHeading 
+        {
+            from { 
+                opacity: 0; transform: translateY(-50px); 
+            } 
+            to { 
+                opacity: 1; transform: translateX(0); 
+            }
+        }
+        @keyframes slideInArticle1 
+        {
+            from { 
+                opacity: 0; transform: translateX(-50px); 
+            } 
+            to { 
+                opacity: 1; transform: translateX(0); 
+            }
+        }
+        @keyframes slideInArticle2 
+        {
+            from { 
+                opacity: 0; transform: translateY(50px); 
+            } 
+            to { 
+                opacity: 1; transform: translateX(0); 
+            }
+        }
+        @keyframes slideInArticle3 
+        {
+            from { 
+                opacity: 0; transform: translateX(50px); 
+            } 
+            to { 
+                opacity: 1; transform: translateY(0); 
+            }
+        }
+        @keyframes slideInSection 
+        {
+            from { 
+                opacity: 0; transform: translateY(50px); 
+            } 
+            to   { 
+                opacity: 1; transform: translateY(0); 
+            }
+        }
+        @keyframes slideInFooter 
+        {
+            from { 
+                opacity: 0; transform: translateY(50px); 
+            } 
+            to   { 
+                opacity: 1; transform: translateY(0); 
+            }
+        }
+        @keyframes page2{
+            from{ 
+            opacity: 0; 
+            }
+            to{ 
+            opacity: 1; 
+            }
+        }
+        @keyframes  left{ 
+            from{
+            background-position:0 0;
+            } 
+            to{
+            background-position:20px 70px;
+            } 
+        }
+        @keyframes right{ 
+            from{
+                background-position:0 0;
+            } 
+            to{
+                background-position:20px 70px;
+            } 
+        }
+       
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .left, .right {
+                display: none;
+            }
+            .center {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header2"
+                    "nav"
+                    "header"
+                    "aside"
+                    "section1"
+                    "article0"
+                    "article1"
+                    "article2"
+                    "article3"
+                    "footer";
+                padding: 10px;
+            }
+            nav {
+                flex-direction: row;
+                flex-wrap:wrap;
+                justify-content: center;
+                gap: 20px;
+                height: auto;
+            }
+            nav img { 
+                width: 220px; 
+                height: auto; 
+            }
+            .header2.text { 
+                font-size: 50px; 
+                text-align: center; 
+            }
+            .header2.image img , .header.image img {
+                max-width: 100%; 
+                height: auto;
+                display:block;
+                margin:0 auto;
+                object-fit: contain;
+             }
+            aside {
+                min-height: auto;
+                padding: 15px;
+            }
+            aside > p {
+                font-size: 0.95em;
+                line-height: 1.5em;
+            }
+            aside img {
+               display:none;
+             }
+            .header.text h1 { 
+                font-size: 28px; 
+            }
+            .section1 .script p { 
+                font-size: 15px; 
+                line-height: 1.6em;
+            }
+            footer p { 
+                font-size: 20px; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .center { 
+                padding: 5px; 
+            }
+            .header2.text { 
+                font-size: 36px; 
+            }
+            .header2.image img, .header.image img {
+                 max-width: 100%; 
+                 height: auto;
+                 margin:0 auto;
+                 object-fit:contain;
+            }
+            aside {
+                padding: 10px;
+            }
+            aside > p {
+                font-size: 0.85em;
+                line-height: 1.4em;
+            }
+            aside img{
+                display: none;
+             }
+            .header.text h1 { 
+                font-size: 22px; 
+            }
+            .header.text p {
+                 font-size: 14px; 
+                }
+            .article1 img, .article2 img { 
+                width: 90%; 
+                height: auto;
+                display:block;
+                margin:0 auto; 
+            }
+            .article1 div > p, .article2 div > p { 
+                font-size: 16px; 
+                padding: 8px; 
+            }
+            nav img { 
+                width: 160px; 
+            }
+            footer p { 
+                font-size: 16px;
+            }
+            footer ul { 
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+     <div class="container">
+         <div class="left"></div>
+
+         <div class="center">
+         <section class="header2" style="grid-area:header2">
+            <div class="header2 text"><p>PORTFOLIO</p></div>
+            <div class="header2 image"><img src="Photoheader2.jpg" height="500px" width="600px"></div>
+         </section>
+
+        <header class="header" style="grid-area: header" id="home">
+
+            <div class="header image">
+                <img src="Photo1.png" height="530px" width="350px">
+            </div>
+
+            <div class="header text"> 
+                <h2 class="starring">STARRING:</h2>
+                <h1 class="name">Arnav Sharma</h1>
+                <p class="synopsis">“ In the age of endless assignments, where bugs threaten to consume all hope, a new journey begins. ”</p>
+                <p class="synopsis2">
+                Born from the Shire of Computer Science, a young developer takes his first steps into the realm of logic and code. Armed with persistence, guided by curiosity and guided by passion, he sets forth to master the languages of the digital world.
+                </p>
+                <p class="climactic">This is not just a portfolio.<br>
+                It is a saga.<br>
+                A quest.<br>
+                An adventure that has only just begun…
+                </p>
+            </div>
+        </header>
+
+         <nav class="nav" style="grid-area: nav">
+            <div class="box Home" ><a href="#home"><img src="Home.png" height="150" width="285"></a></div>
+            <div class="box About" ><a href="#about"><img src="About.png" height="150" width="300"></a></div>
+            <div class="box Projects" ><a href="#projects"><img src="Projects.png" height="150" width="300"></a></div>
+            <div class="box Contact" ><a href="#contact"><img src="Contact.png" height="150" width="290"></a></div>
+         </nav>
+
+         <aside class="aside" style="grid-area: aside" id="about">
+            <div class="aside image"><img src="Photo4.jpg" height="200px" width="200px"></div>
+            <p> <span>TITLE:</span> The Origin Story <br>
+            <span>Release Date:</span> 21 February 2007 <br>
+            <span>Runtime:</span> Lifelong <br>
+            <span>Genre:</span> Creative Coder<br>
+            <span>Directed by:</span> Arnav Sharma<br>
+            <span>Written by:</span> Bugs (and Debugs)<br>
+            <span>Cast and Crew:</span> HTML, CSS, JavaScript, Java<br>
+            <span>Production Studio:</span> My Brain Studios™</p>
+         </aside>
+
+         <section class="section1" style="grid-area: section1" >
+               <h2>--Behind the Scenes:--</h2>
+               <div class="script">
+                    <p class="scene scene1">SCENE 1: INT. BEDROOM – 2018</p>
+                    <p>The journey begins. A curious mind takes its first steps into the vast realm of Computer Science.</p> 
+                    <p class="scene scene2">SCENE 2: INT. STUDY DESK – 2020</p>
+                    <p>Arnav writes his first lines of Java code. The syntax may look strange, but the spark of passion is undeniable.</p>   
+                    <p class="scene scene3">SCENE 3: EXT. INTER-SCHOOL COMPETITION HALL – 2021</p>
+                    <p>The pressure is high. Arnav rises to the occasion, claiming the <strong>3rd position</strong> and proving that this story is just getting started.</p>                   
+                    <p class="scene scene4">SCENE 4: INT. EXAMINATION ROOM – 2023</p>
+                    <p>Months of preparation culminate in triumph — a <strong>perfect 100</strong> in Computer Science board exams. The audience erupts in silent applause.</p>       
+                    <p class="scene scene5">SCENE 5: MONTAGE – 2023 TO 2025</p>
+                    <p>The world of JEE consumes time and energy. For two years, the keyboard stays quiet.  
+                    <em>But the story doesn’t pause — Arnav keeps watching, learning, following every spark of coding and tech news like an unseen narrator in the background.</em></p>                   
+                    <p class="scene scene6">SCENE 6: INT. SCALER SCHOOL OF TECHNOLOGY – 2025</p>
+                    <p>The comeback. After a brief intermission, Arnav returns to coding — stronger, sharper, and ready for Act II of his saga.</p>
+               </div>
+         </section>
+
+         <div class="article heading" style="grid-area: article0" id="projects">
+            <p>Projects Directed by Arnav Sharma</p></div>
+         <article class="article1" style="grid-area: article1" >
+            <img src="SolarSystem.png" height="120px" width="120px">
+            <div><p style="text-align: center;"> Solar System: A Cosmic Journey</p></div>
+            <div>
+                <ul class="rating1">
+                    <li>Written and Directed by: Arnav Sharma</li>
+                    <li>Cinematography by: HTML and CSS</li>
+                    <li>Genre : Rotating Bodies Animation</li>
+                    <li>Music by: Keyboard Typing Sounds</li>
+                    <li> ⭐⭐⭐⭐☆ — “Critics say: Out of this world!”</li>
+                    <li>⭐⭐⭐⭐☆ — “89% on Code Tomatoes 🍅”</li>
+                </ul>
+            </div>
+        </article>
+         <article class="article2" style="grid-area: article2" >
+            <img src="Game.png" height="120px" width="120px">
+            <div><p style="text-align: center;"> Knight's Odyssey</p></div>
+            <div>
+                <ul class="rating2">
+                    <li>Directed by: Arnav Sharma & Friends</li>
+                    <li>Written by: C# Studios</li>
+                    <li>Genre : Platform based Game</li>
+                    <li>Music by: Keyboard Typing Sounds</li>
+                    <li>⭐⭐⭐⭐⭐ — “Blockbuster hit — a coding classic!”---Times of India</li>
+                    <li>⭐⭐⭐⭐☆ — “94% on Code Tomatoes 🍅”</li>
+                </ul>
+            </div>
+        </article>
+         <article class="article3" style="grid-area: article3" >
+            <p>"Upcoming Projects — Filming in Progress...”</p></article>
+
+         <footer class="footer" style="grid-area: footer" id="contact">
+            <p style="text-align: center;">“Credits are rolling, but the story isn’t over — reach out to the director.”</p>
+            <ul type="circle">
+                
+                <li> <img src="Gmail logo.png" height="20" width="25"> “ For fan mail, casting calls, or secret scripts — drop me a line: arnavshrma2007@gamil.com "</li>
+                <li> <img src="Git hub logo.png" height="25" width="25"> “ Behind the lens of logic and loops — <a href ="https://github.com/Arnav-Sharma21" target="_blank"> github.com/Arnav-Sharma21 "</a></li>
+                <li> <img src="Linkedin logo.png" height="25" width="25"> " Explore the cinematic journey of a coder-director:<a href="https://www.linkedin.com/in/arnavsharma21/" target="_blank">linkedin.com/in/Arnav Sharma</a></li>
+            </ul>
+         </footer>
+         </div>
+         <div class="right"></div>
+    </div>
+</body>
+</html>

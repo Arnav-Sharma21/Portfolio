@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Rye&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-color: #0d0d0d;
+            height:100vh;
+        }
+        .container{
+            height: 100vh;
+            display:grid;
+            grid-template-columns:1fr 11fr 1fr;
+            gap:10px; 
+        }
+        .left{
+            background: repeating-linear-gradient(black 0px, black 10px, #ffffff 20px, #eeeeee48 70px);
+            animation-name: left;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        .right{
+            background: repeating-linear-gradient(black 0px, black 10px, #ffffff 20px, #eeeeee48 70px);
+            animation-name: right;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        .center{
+            background-image: url(https://www.shutterstock.com/shutterstock/videos/3635825325/thumb/1.jpg?ip=x480);
+            background-size: cover;
+            background-position: center;
+        }
+        button{
+            font-family: "Righteous", sans-serif;
+            border-radius: 8px;
+            box-shadow: 3px 3px black;
+            padding: 10px 40px;
+            font-size: 1.4rem;
+            background:rgb(190, 190, 190);
+            color: aliceblue;
+            cursor: pointer;
+            opacity: 0;
+            animation-name: watching ;
+            animation-duration: 2s;
+            animation-delay: 3.5s;
+            animation-fill-mode: forwards;
+        }
+        button:hover {
+            color:aliceblue;
+            background:#575757; 
+            transform: translateY(0px);
+            box-shadow: 3px 3px rgb(0, 0, 0);
+        }
+        p:nth-child(1){
+            margin-top: 200px;
+            color:#0d0d0d;
+             font-family: 'Libre Baskerville', serif;
+            font-size:60px;
+            animation-name: heading;
+            animation-duration: 6s;
+            animation-fill-mode: forwards;
+        }
+        p:nth-child(2){
+            margin-top: 40px;
+            color:#0d0d0d;     
+            font-family: 'Rye', cursive;
+            font-size:60px;
+            animation-name: heading;
+            animation-duration: 6s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes left{
+            from { background-position: 0 0; }
+            to   { background-position: 20px 70px; }
+        }
+        @keyframes right{
+            from { background-position: 0 0; }
+            to   { background-position: 20px 70px; }
+        }
+        @keyframes heading{
+            0% { transform: translateY(-500px); }
+            60% { transform: translateY(0); }
+            80% { transform: translateY(0); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes watching {
+             from { opacity: 0; }
+             to   { opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .left, .right {
+                display: none;
+            }
+            .center {
+                text-align: center;
+                padding: 20px;
+            }
+            p:nth-child(1) {
+                font-size: 40px;
+                margin-top: 90px;
+            }
+            p:nth-child(2){
+                font-size: 40px;
+                margin-top: 90px;
+            }
+            button {
+                font-size: 1.2rem;
+                padding: 8px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            p:nth-child(1), p:nth-child(2) {
+                font-size: 28px;
+            }
+            button {
+                font-size: 1rem;
+                padding: 6px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="center" style="text-align: center;">
+            <p>Now Playing:</p>
+            <p>The Origin Story of a Computer Science Student</p>
+            <a href="Portfolio4.html" class="button"><button>Watch Now</button></a>
+        </div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
